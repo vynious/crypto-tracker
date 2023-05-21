@@ -59,9 +59,9 @@ main.get("/home", async (req, res) => {
 
 })
 
-main.get('/assets', async (req, res) => {
+main.get('/assets/:id', async (req, res) => {
     const accessToken = req.cookies.accessToken;
-    const target = "sgd" // can be changed accordingly
+    const target = req.params.id // can be changed accordingly
     const resData = await axios.post(`http://localhost:3001/api/user/profile/current-assets`, {target: target}, {headers: 
                             {Authorization: `Bearer ${accessToken}`}})
                                             .then(res=> {

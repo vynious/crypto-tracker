@@ -20,7 +20,7 @@ export const validateToken = asyncHandler(async (req, res, next) => {
      
         })
     } else {
-        res.status(401).redirect("../views/landing-page/login.ejs");
+        res.status(401).redirect("/main/login");
         throw new Error("unauthorised / no access token");
     }
 })
