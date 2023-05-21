@@ -15,6 +15,7 @@ export const app = express();
 const PORT = process.env.PORT || 6001;
 
 app.set("view engine", "ejs");
+app.set("views" , "views")
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.json());
