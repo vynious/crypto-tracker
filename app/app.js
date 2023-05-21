@@ -9,13 +9,25 @@ import coinRoutes from "./routes/api_routes/coinRoutes.js"
 import cors from "cors";
 import mainRoutes from "./routes/page_routes/mainRoutes.js";
 import bodyParser from 'body-parser';
+import path from "path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+
 
 dotenv.config();
 export const app = express();
 const PORT = process.env.PORT || 6001;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.set('views', path.join(__dirname, 'views'));
+
 
 app.set("view engine", "ejs");
 app.set("views" , "views")
+app.set('views', path.join(__dirname, 'views'))
+
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.json());
