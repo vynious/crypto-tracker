@@ -8,19 +8,12 @@ SUMMARY:
 Application that connections to an custom-made API with different endpoints of different functionalities (located under api_routes). 
 Overall, the main purpose of the application is to help users keep track of the valuation and cost of their purchased cryptocurrencies without being affected by the spread commonly seen cryptocurrency exchanges. This allows them to more accurately keep track of their portfolio
 
+Data Powered by CoinGecko's Free Crypto API
+
 FUNCTIONALITIES: 
 
-The users can search for coins, which will display the details of the coins.
-The users can also add these coins into their current assets which helps keep track 
-of their overall portfolio. The users can input the 1. fees incurred when purchasing,
-2. currency used and 3. quantity purchased. 
-Under their current assets page, the users will be able to see the cost price that the 
-transaction (of buying that coin in X currency), and also the current valuation of their 
-assets. 
-the users can view their current assets portfolio in whichever currency they choose, either in 
-fiat or crypto currencies. Their cost price and current valuation will be adjusted based on their
-preference according. 
-
+The users can search for coins, which will display the details of the coins. The users can also add these coins into their current assets which helps keep track of their overall portfolio. The users can input the 1. fees incurred when purchasing, 2. currency used and 3. quantity purchased. Under their current assets page, the users will be able to see the cost price that the transaction (of buying that coin in X currency), and also the current valuation of their 
+assets. the users can view their current assets portfolio in whichever currency they choose, either in fiat or crypto currencies. Their cost price and current valuation will be adjusted based on their preference according. 
 
 
 API ENDPOINTS:
@@ -91,8 +84,6 @@ POST method
 Accepts email and password in the request body
 Generates a JWT token for authentication
 Subsequent requests should use the JWT token for authentication
-
-
 
 
 TECH STACK:
