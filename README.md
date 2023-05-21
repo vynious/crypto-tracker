@@ -11,15 +11,12 @@ Overall, the main purpose of the application is to help users keep track of the 
 FUNCTIONALITIES: 
 
 The users can search for coins, which will display the details of the coins.
-
 The users can also add these coins into their current assets which helps keep track 
 of their overall portfolio. The users can input the 1. fees incurred when purchasing,
 2. currency used and 3. quantity purchased. 
-
 Under their current assets page, the users will be able to see the cost price that the 
 transaction (of buying that coin in X currency), and also the current valuation of their 
 assets. 
-
 the users can view their current assets portfolio in whichever currency they choose, either in 
 fiat or crypto currencies. Their cost price and current valuation will be adjusted based on their
 preference according. 
