@@ -13,9 +13,11 @@ export const validateToken = asyncHandler(async (req, res, next) => {
             if (err) {
                 res.status(401);
                 throw new Error("unauthorised access");
-            }
-            req.user = decoded.user;
-            next();
+            } else {
+                req.user = decoded.user;
+                next();
+            }   
+     
         })
     } else {
         res.status(401).redirect("../views/landing-page/login.ejs");

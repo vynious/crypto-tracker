@@ -36,24 +36,22 @@
         const password = passwordData.value;
 
         if (email && password) {
-                await fetch("/api/auth/login", {
+                const response = await fetch("/api/auth/login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({email: email, password: password}),
-                }).then (res => {
-                    if (res.ok) {
-                        const serverRes = res.json();
-                        const accessToken = serverRes.access_token;
-                        document.cookie = `accessToken=${accessToken}`;
-                        window.location.href = "/main/home";
-                    } else {
-                        console.log(res);
-                        alert("incorrect pw/email") 
-                    }
-                })
-            
+                });
+                if (response.ok) {
+                    const serverRes = await response.json();
+                    const accessToken = serverRes.access_token;
+                    document.cookie = `accessToken=${accessToken}`;
+                    window.location.href = "/main/home";
+                } else {
+                    console.log(response)
+                    alert("incorrect pw/email")
+                }
         } 
     })
 
