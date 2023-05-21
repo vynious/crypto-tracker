@@ -5,8 +5,7 @@ import Asset from "../models/assetModel.js";
 import { updateAssets } from "./assetController.js";
 
 
-
-// display all coins for when searching
+// all coins listed on coingecko (not rendered in app due to large data ~11,000 coins)
 export const getCoins = asyncHandler( async (req, res) => {
     const allCoinsUrl = "https://api.coingecko.com/api/v3/coins/list";
     const result = await axios.get(allCoinsUrl)
@@ -19,7 +18,6 @@ export const getCoins = asyncHandler( async (req, res) => {
                         });
     if (result) {
         res.status(200).json({result: result});
-        // do more with json response 
     } else {
         res.status(404);
         throw new Error("not found");
@@ -27,7 +25,7 @@ export const getCoins = asyncHandler( async (req, res) => {
 })
 
 
-// search for specific coins 
+// details on specific coins 
 export const searchCoin = asyncHandler( async (req, res) => {
     let id = req.params.id;
     const coinUrl = `https://api.coingecko.com/api/v3/coins/${id}`;
@@ -49,7 +47,7 @@ export const searchCoin = asyncHandler( async (req, res) => {
 
 })
 
-// display the top 7 coins (when doing search bar)
+// display the top 7 trending coins on coingecko
 export const topCoins = asyncHandler( async (req, res) => {
     const coinUrl = "https://api.coingecko.com/api/v3/search/trending";
     const coinsDetail = await axios.get(coinUrl)
@@ -69,13 +67,17 @@ export const topCoins = asyncHandler( async (req, res) => {
     }
 })
 
-// add coins to assets
 
 const calculate = async (price, quantity) => {
     let cost = parseFloat(price) * parseFloat(quantity);
     return cost;
 };
 
+
+// get coin current price
+// get cost of purchase 
+// create a transaction (model object)
+// update users assets 
 export const buyCoins = asyncHandler(async (req, res) => {
     console.log(req.user);
     const id = req.params.id;
@@ -114,7 +116,10 @@ export const buyCoins = asyncHandler(async (req, res) => {
     }
 })
 
-
+// get coin current price
+// get cost of sale 
+// create a transaction (model object)
+// update users assets 
 export const sellCoins = asyncHandler( async (req, res) => {
     // check current assets if got coin then can sell. 
     const id = req.params.id;

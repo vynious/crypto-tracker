@@ -3,6 +3,7 @@ import axios from "axios";
 
 
 // helper 
+// rates in terms of btc
 const btcExchangeRate = asyncHandler(async (currentCurrency) => {
     const rateUrl = "https://api.coingecko.com/api/v3/exchange_rates";
     const btcRate = await axios.get(rateUrl)

@@ -6,6 +6,7 @@ const main = express.Router();
 
 dotenv.config();
 
+// client-facing page to interact with the backend, and render out json in frontend ejs.  
 
 main.get("/login", (req,res) => {
     res.render('login');
@@ -22,7 +23,7 @@ main.get("/logout", (req, res) => {
 })
 
 
-// landing page (top 7 trending coins)
+// landing page (returns top 7 trending coins)
 main.get("/home", async (req, res) => {   
     console.log(req);
     const accessToken = req.cookies.accessToken;
@@ -59,6 +60,8 @@ main.get("/home", async (req, res) => {
 
 })
 
+
+// :id determine currency to view the assets in, eg. sgd, usd, eth, btc (currency must be supported by coingecko)
 main.get('/assets/:id', async (req, res) => {
     const accessToken = req.cookies.accessToken;
     const target = req.params.id // can be changed accordingly
@@ -76,10 +79,11 @@ main.get('/assets/:id', async (req, res) => {
 
 // search for coins 
 main.get("/search", async (req, res)=> {
-    // 
+    // uncompleted
 })
 
-// coin page
+// :id determines the coin, eg. ethereum, solana, bitcoin
+// renders a page of the details on the coins 
 main.get("/coin/:id", async (req, res) => {
     const accessToken = req.cookies.accessToken;
     if (!accessToken) {
@@ -102,6 +106,7 @@ main.get("/coin/:id", async (req, res) => {
     } 
 })
 
+// page for making sales/purchases (transaction) 
 main.get('/coin/:id/buy', async (req, res) => {
     const accessToken = req.cookies.accessToken;
     const id = req.params.id;
@@ -120,6 +125,7 @@ main.get('/coin/:id/buy', async (req, res) => {
     }
 })
 
+// page for making sales/purchases (transaction) 
 main.get('/coin/:id/sell', async (req, res) => {
     const accessToken = req.cookies.accessToken;
     const id = req.params.id;
@@ -138,6 +144,8 @@ main.get('/coin/:id/sell', async (req, res) => {
     }
 })
 
+
+// error handling page, if path is not in any routes
 main.use((req, res) => {
     res.status(404).render("error");
 })

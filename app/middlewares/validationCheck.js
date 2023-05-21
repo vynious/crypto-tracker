@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 
 
-
+// check if all requests made to main apis have a JWT
 export const validateToken = asyncHandler(async (req, res, next) => {
     let accessToken;
     let authHeaders = req.headers.authorization || req.headers.Authorization;

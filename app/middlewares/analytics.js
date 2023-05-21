@@ -27,6 +27,8 @@ const parseDate = async (date) => {
     return  String(date.getDate()) + "-" + month + "-" + String(date.getFullYear())
 }
 
+
+
 // main function
 // returns the cost of purchasing based on the date of purchase
 export const calculateCost = asyncHandler( async(transactions, target) => {

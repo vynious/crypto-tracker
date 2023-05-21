@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 
+
 const validPassword = (password) => {
     const regexExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     return regexExp.test(password);
@@ -18,8 +19,6 @@ export const registerUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("all fields are mandatory");
     }
-
-
     // password validity 
     const isValid = await validPassword(password);
     if (!isValid) {

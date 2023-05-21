@@ -3,15 +3,15 @@ import Transaction  from "../models/transactionModel.js";
 import Asset from "../models/assetModel.js";
 import { calculateCost, calculateValue } from "../middlewares/analytics.js";
 
+
+// update user assets for every transaction made  
 export const updateAssets = asyncHandler( async (id) => {
     const transactions = await Transaction.find({user_id: id});
     const lastTransaction = transactions[transactions.length - 1];
-    // console.log(lastTransaction)
     const coin_symbol = lastTransaction.target_coin.coin_symbol;
     const inAssets = await Asset.findOne({user_id: id, coin_symbol: coin_symbol});
     const quantity = lastTransaction.quantity;
     let successfulUpdate = false;
-    // console.log(inAssets);
     if (lastTransaction.action === "buy") {
         if (inAssets === null) {
             successfulUpdate = await Asset.create({ // create new asset 
@@ -46,14 +46,13 @@ export const updateAssets = asyncHandler( async (id) => {
 });
 
 
-// read assets : 
+// display user assets and return valuation 
 export const userAssets = asyncHandler(async (req, res) => {
     const transactions = await Transaction.find({user_id: req.user.id});
     const {target} = req.body
     const allAssets = await Asset.find({user_id: req.user.id});
     const valuation = await calculateValue(allAssets, target);
     const cost = await calculateCost(transactions, target);
-    // console.log(transactions);
     res.status(200).json({
         assets: allAssets,
         total_value: `${valuation} in ${target}`,

@@ -5,7 +5,7 @@ import { updateAssets } from "../../controllers/assetController.js";
 
 const coin = express.Router();
 
-
+// all requests made to coin-related apis must be validated with their token
 coin.post("/", validateToken, getCoins);
 coin.post("/search/:id", validateToken, searchCoin);
 coin.post("/top", validateToken, topCoins);
