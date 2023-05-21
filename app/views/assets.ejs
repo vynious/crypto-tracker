@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assets</title>
+</head>
+<body>
+    <% for (let i=0; i<data.assets.length; i++) { %>
+        <div>
+            <h3> <%=data.assets[i].coin_id%>[<%=data.assets[i].coin_symbol%>] => <%=data.assets[i].quantity%></h3>
+        </div>
+    <% } %>
+
+    <b> total valuation: <%= data.total_value %> </b> <br>
+    <b> total cost of purchase: <%= data.cost_of_purchase %> </b>
+</body>
+</html>

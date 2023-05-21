@@ -1,0 +1,13 @@
+
+<h1>Logout</h1>
+
+<button id="logout-btn">Logout</button>
+
+
+<script>
+    const logoutBtn = document.getElementById("logout-btn");
+    logoutBtn.addEventListener("click", () => {
+        document.cookie = 'accessToken=;max-age=0;path=/';
+        alert("logged out")
+    })
+</script>

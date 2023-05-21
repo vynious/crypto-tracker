@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" id="login-btn">Login</button>
+        </form>
+        <br>
+        <a href="/main/register">Register</a>
+    </div>
+</body>
+</html>
+
+
+<script>
+    const loginBtn = document.getElementById("login-btn");
+    const emailData = document.getElementById("email");
+    const passwordData = document.getElementById("password");
+    
+    loginBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const email = emailData.value;
+        const password = passwordData.value;
+
+        if (email && password) {
+            try {
+                const response = await fetch("/api/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({email: email, password: password}),
+                });
+                
+                if (response.ok) {
+                    const serverRes = await response.json();
+                    const accessToken = serverRes.access_token;
+                    document.cookie = `accessToken=${accessToken}`;
+                    window.location.href = "/main/home";
+                    
+                } else {
+                    alert("incorrect pw/email")
+                }
+
+            } catch (err) {
+                console.error(err.message);
+            }
+            
+        } 
+    })
+
+    
+
+</script>

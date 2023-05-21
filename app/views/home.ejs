@@ -1,0 +1,13 @@
+<h1>Crypto Tracker</h1>
+
+
+<section>
+    <% for (let i = 0; i < data.length; i ++) { %>
+        <div>
+        Rank <%= data[i].rank + 1 %>: 
+        <img src="<%= data[i].thumb %>">
+        <a href="/main/coin/<%= data[i].coin_id %>"> <%=data[i].coin_name %> </a>
+        <br>
+        </div>
+   <% } %>
+</section>

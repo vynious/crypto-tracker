@@ -1,0 +1,18 @@
+
+<img src="<%= data.image.large %>">
+ 
+<div>
+    <h1><%= data.name %></h1>
+    <%- data.description.en %> 
+    <br>
+    <br> 
+    <a href="<%= data.links.homepage %>"> <%=data.name %>'s homepage</a> 
+    <br>
+    <br>
+
+    <a href="/main/coin/<%=data.id %>/buy">Buy <%=data.name %></a>
+    <a href="/main/coin/<%=data.id %>/sell">Sell <%=data.name %></a>
+
+
+    <p> ... more details yet to be rendered </p>
+</div>

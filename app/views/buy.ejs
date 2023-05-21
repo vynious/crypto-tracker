@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy <%=id%></title>
+</head>
+<body>
+    <h1>Transaction: <%=id%></h1>
+    <form>
+        <div>
+            <input type="hidden" value="<%=id%>" id="coin_id">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+          </div>
+          <div>
+            <label for="fees">Fees:</label>
+            <input type="number" id="fees" name="fees" required>
+          </div>
+          <div>
+            <label for="unit">Unit:</label>
+            <input type="text" id="unit" name="unit" required>
+          </div>
+          <div>
+            <label for="unit_name">Unit Name:</label>
+            <input type="text" id="unit_name" name="unit_name" placeholder='if fiat, leave as empty'>
+          </div>
+          <div>
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+              <option disabled selected>Select Type</option>
+              <option value="fiat">Fiat</option>
+              <option value="crypto">Cryptocurrency</option>
+            </select>
+          </div>
+          <button type="submit" id="submit-btn">Submit</button>
+    </form>
+</body>
+</html>
+
+
+<script>
+    const submitBtn = document.getElementById("submit-btn");
+    submitBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const coin_id = document.getElementById("coin_id").value;
+        const quantity = document.getElementById('quantity').value;
+        const fees = document.getElementById('fees').value;
+        const unit = document.getElementById('unit').value;
+        const unit_name = document.getElementById('unit_name').value;
+        const type = document.getElementById('type').value;
+        const accessToken = (document.cookie).slice(12);
+        
+        await fetch(`/api/coin/${coin_id}/buy`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`
+            },
+            body: JSON.stringify({quantity: quantity, fees: fees, 
+                unit: unit, unit_name: unit_name, type: type}),
+        }).then(res => {
+          if (res.ok) {
+            alert("successfully purchased");
+          } else {
+            alert("error buying");
+          }
+        })
+
+
+    })
+</script>
