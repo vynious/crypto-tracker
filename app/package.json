@@ -5,10 +5,10 @@
   "main": "app.js",
   "type": "module",
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon app",
     "test": "jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1"
   },
   "author": "",
