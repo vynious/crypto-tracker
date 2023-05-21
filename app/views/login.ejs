@@ -46,12 +46,13 @@
                 });
                 
                 if (response.ok) {
+
                     const serverRes = await response.json();
                     const accessToken = serverRes.access_token;
                     document.cookie = `accessToken=${accessToken}`;
                     window.location.href = "/main/home";
-                    
                 } else {
+                    console.log(response);
                     alert("incorrect pw/email")
                 }
 
