@@ -103,3 +103,13 @@ TECH STACK:
 Database: MongoDB;
 Backend: NodeJS , ExpressJS
 Frontend: EJS, Vanilla JS
+
+
+
+
+https://github.com/vynious/crypto-tracker/assets/77824606/b01e747b-6709-424c-ad7a-cc8a5be59fbe
+
+
+
+
+
